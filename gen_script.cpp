@@ -26,9 +26,6 @@ string getWaKiller(string script_pattern, string solution_1, string solution_2, 
 	} while (!ok && --max_test);
 	return (ok? script_result : "");
 }
-void run(string script, string solution) {
-
-}
 string getTleKiller(string script_pattern, string solution, int max_test, string script_suffix) {
 	return "";
 }
