@@ -46,5 +46,12 @@ signed main(int argc, char *argv[]) {
 	#ifdef LOCAL
 		freopen(script_destination.c_str(), "w", stdout);
 	#endif
-
+	int count_test = 0;
+	auto addTest = [&](string script) {
+		++count_test;
+		// cerr << script << '\n';
+		cerr << "Completed test #" << count_test << '\n';
+		cout << script << '\n';
+	};
+	
 }
