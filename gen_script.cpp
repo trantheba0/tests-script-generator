@@ -4,8 +4,8 @@ using namespace std;
 const string script_destination = "tests-script.txt";
 string formatWithRandom(string script, string suffix = "", long long range_l = 1, long long range_r = 1e18);
 string formatWithoutRandom(string script, string suffix = "");
-string getWaKiller(string script_pattern, string solution_1, string solution_2, string script_suffix = "");
-string getTleKiller(string script_pattern, string solution, string script_suffix = "");
+string getWaKiller(string script_pattern, string solution_1, string solution_2, int max_test = 1000, string script_suffix = "");
+string getTleKiller(string script_pattern, string solution, int max_test = 100, string script_suffix = "");
 bool compareResult(string file_1, string file_2, string inp = "");
 
 string formatWithRandom(string script, string suffix, long long range_l, long long range_r) {
@@ -14,7 +14,7 @@ string formatWithRandom(string script, string suffix, long long range_l, long lo
 string formatWithoutRandom(string script, string suffix) {
 	return script + (!suffix.empty()? " " : "") + suffix + " > $";
 }
-string getWaKiller(string script_pattern, string solution_1, string solution_2, string script_suffix) {
+string getWaKiller(string script_pattern, string solution_1, string solution_2, int max_test, string script_suffix) {
 	bool ok = 0;
 	string script_result = "";
 	do {
@@ -23,13 +23,13 @@ string getWaKiller(string script_pattern, string solution_1, string solution_2, 
 		system(solution_1.c_str());
 		system(solution_2.c_str());
 		ok = !compareResult(solution_1 + ".out", solution_2 + ".out");
-	} while (!ok);
-	return script_result;
+	} while (!ok && --max_test);
+	return (ok? script_result : "");
 }
 void run(string script, string solution) {
 
 }
-string getTleKiller(string script_pattern, string solution, string script_suffix) {
+string getTleKiller(string script_pattern, string solution, int max_test, string script_suffix) {
 	return "";
 }
 bool compareResult(string file_1, string file_2, string inp) {
@@ -49,5 +49,5 @@ signed main(int argc, char *argv[]) {
 	#ifdef LOCAL
 		freopen(script_destination.c_str(), "w", stdout);
 	#endif
-	
+
 }
