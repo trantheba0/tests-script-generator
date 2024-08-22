@@ -26,8 +26,11 @@ string getWaKiller(string script_pattern, string solution_1, string solution_2, 
 	} while (!ok);
 	return script_result;
 }
+void run(string script, string solution) {
+
+}
 string getTleKiller(string script_pattern, string solution, string script_suffix) {
-	return "";	
+	return "";
 }
 bool compareResult(string file_1, string file_2, string inp) {
 	ifstream f_1(file_1), f_2(file_2);
@@ -46,5 +49,5 @@ signed main(int argc, char *argv[]) {
 	#ifdef LOCAL
 		freopen(script_destination.c_str(), "w", stdout);
 	#endif
-	// getTleKiller("", "", "");
+	
 }
